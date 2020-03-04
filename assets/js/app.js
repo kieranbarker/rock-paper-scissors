@@ -22,7 +22,16 @@
    * Handle click events
    * @param {Object} event The Event interface 
    */
-  var clickHandler = function ( event ) {};
+  var clickHandler = function ( event ) {
+
+    // Bail if anything other than a button was clicked
+    if ( !event.target.hasAttribute( "data-choice" ) ) return;
+
+    // Get the user's choice
+    var userChoice = event.target.getAttribute( "data-choice" );
+    console.log( userChoice );
+
+  };
 
 
   //

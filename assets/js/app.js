@@ -46,7 +46,7 @@
   };
 
   /**
-   * Make the computer's choice
+   * Shuffle the array of choices and return the first item
    * @return {String} The choice (rock/paper/scissors)
    */
   var makeChoice = function() {

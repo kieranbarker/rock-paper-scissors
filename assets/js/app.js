@@ -8,6 +8,7 @@
 
   // Elements
   var app = document.querySelector("#app");
+  var results = document.querySelector("#results");
 
   // Game logic
   var choices = [ "rock", "paper", "scissors" ];
@@ -54,6 +55,43 @@
   };
 
   /**
+   * Get the result of the game
+   * @param  {String} userChoice     The user's choice
+   * @param  {String} computerChoice The computer's choice
+   * @return {String}                The result as an HTML string
+   */
+  var getResult = function (userChoice, computerChoice) {
+
+    // To store the result and HTML output
+    var result, htmlString;
+
+    // Update the result
+    if (userChoice === computerChoice) {
+      result = "tie";
+    } else if (wins[userChoice] === computerChoice) {
+      result = "win";
+    } else {
+      result = "lose";
+    }
+
+    // Update the HTML output
+    htmlString = "<h2>" + (result === "tie" ? "It's a tie!" : "You " + result + "!") + "</h2>";
+    htmlString += "<p>";
+      if (result === "tie") {
+        htmlString += "You both picked " + userChoice;
+      } else if (result === "win") {
+        htmlString += userChoice + " beats " + computerChoice;
+      } else {
+        htmlString += computerChoice + " beats " + userChoice;
+      }
+    htmlString += "</p>";
+
+    // Return the HTML output
+    return htmlString;
+
+  };
+
+  /**
    * Handle click events
    * @param {Object} event The Event interface 
    */
@@ -62,24 +100,12 @@
     // Bail if anything other than a button was clicked
     if (!event.target.hasAttribute("data-choice")) return;
 
-    // Get the user's choice
+    // Get user's and computer's choices
     var userChoice = event.target.getAttribute("data-choice");
-    console.log(userChoice);
-
-    // Get the computer's choice
     var computerChoice = makeChoice();
-    console.log(computerChoice);
 
-    if (userChoice === computerChoice) {
-      // tie
-      console.log("tie");
-    } else if (wins[userChoice] === computerChoice) {
-      // win
-      console.log("win");
-    } else {
-      // loss
-      console.log("loss");
-    }
+    // End the game
+    results.innerHTML = getResult(userChoice, computerChoice);
 
   };
 

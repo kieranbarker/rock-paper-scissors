@@ -70,6 +70,17 @@
     var computerChoice = makeChoice();
     console.log(computerChoice);
 
+    if (userChoice === computerChoice) {
+      // tie
+      console.log("tie");
+    } else if (wins[userChoice] === computerChoice) {
+      // win
+      console.log("win");
+    } else {
+      // loss
+      console.log("loss");
+    }
+
   };
 
 

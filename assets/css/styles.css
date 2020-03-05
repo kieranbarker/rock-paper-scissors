@@ -21,3 +21,15 @@ p {
 button {
   font-size: 100%;
 }
+
+[data-choice="rock"]::after {
+  content: " ✊";
+}
+
+[data-choice="paper"]::after {
+  content: " ✋";
+}
+
+[data-choice="scissors"]::after {
+  content: " ✌️";
+}

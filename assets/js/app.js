@@ -9,6 +9,7 @@
   // Elements
   var app = document.querySelector("#app");
   var results = document.querySelector("#results");
+  var screenReader = document.querySelector(".screen-reader");
 
   // Game logic
   var choices = [ "rock", "paper", "scissors" ];
@@ -55,6 +56,24 @@
   };
 
   /**
+   * Convert a string to title case
+   * source: https://gist.github.com/SonyaMoisset/aa79f51d78b39639430661c03d9b1058#file-title-case-a-sentence-for-loop-wc-js
+   * @param  {String} str The string to convert to title case
+   * @return {String}     The converted string
+   */
+  var toTitleCase = function (str) {
+
+    str = str.toLowerCase().split(" ");
+
+    for (var i = 0; i < str.length; i++) {
+      str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1);
+    }
+
+    return str.join(' ');
+
+  };
+
+  /**
    * Get the result of the game
    * @param  {String} userChoice     The user's choice
    * @param  {String} computerChoice The computer's choice
@@ -80,9 +99,9 @@
       if (result === "tie") {
         htmlString += "You both picked " + userChoice;
       } else if (result === "win") {
-        htmlString += userChoice + " beats " + computerChoice;
+        htmlString += toTitleCase(userChoice) + " beats " + computerChoice;
       } else {
-        htmlString += computerChoice + " beats " + userChoice;
+        htmlString += toTitleCase(computerChoice) + " beats " + userChoice;
       }
     htmlString += "</p>";
 
@@ -106,6 +125,9 @@
 
     // End the game
     results.innerHTML = getResult(userChoice, computerChoice);
+
+    // Announce the result to screen readers
+    screenReader.textContent = results.textContent.replace("!", "! ");
 
   };
 

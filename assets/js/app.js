@@ -93,15 +93,20 @@
       result = "lose";
     }
 
-    // Update the HTML output
-    htmlString = "<h2>" + (result === "tie" ? "It's a tie!" : "You " + result + "!") + "</h2>";
+    // Add the result to the output
+    htmlString =
+      "<p><b>You:</b> " + userChoice + ".</p>" +
+      "<p><b>Computer:</b> " + computerChoice + ".</p>" +
+      "<h2>" + (result === "tie" ? "It's a Tie!" : "You " + toTitleCase(result) + "!") + "</h2>";
+
+    // Add the game logic to the output
     htmlString += "<p>";
       if (result === "tie") {
-        htmlString += "You both picked " + userChoice;
+        htmlString += "You both picked " + userChoice + " 🤝";
       } else if (result === "win") {
-        htmlString += toTitleCase(userChoice) + " beats " + computerChoice;
+        htmlString += toTitleCase(userChoice) + " beats " + computerChoice + " ✅";
       } else {
-        htmlString += toTitleCase(computerChoice) + " beats " + userChoice;
+        htmlString += toTitleCase(computerChoice) + " beats " + userChoice + " ❌";
       }
     htmlString += "</p>";
 
@@ -127,7 +132,7 @@
     results.innerHTML = getResult(userChoice, computerChoice);
 
     // Announce the result to screen readers
-    screenReader.textContent = results.textContent.replace("!", "! ");
+    screenReader.textContent = results.innerText.slice(0, -2);
 
   };
 

@@ -77,12 +77,12 @@
    * Get the result of the game
    * @param  {String} userChoice     The user's choice
    * @param  {String} computerChoice The computer's choice
-   * @return {String}                The result (win/loss/tie)
+   * @return {String}                The result as an HTML string
    */
   var getResult = function (userChoice, computerChoice) {
 
-    // Store the result
-    var result;
+    // Store the result and HTML output
+    var result, htmlString;
 
     // Update the result
     if (userChoice === computerChoice) {
@@ -92,21 +92,6 @@
     } else {
       result = "lose";
     }
-
-    // Return the result
-    return result;
-
-  };
-
-  /**
-   * Get an HTML string to show the result of the game
-   * @param  {String} result The result of the game (win/loss/tie)
-   * @return {String}        An HTML string with the result
-   */
-  var getHTML = function (result) {
-
-    // Store the HTML output
-    var htmlString;
 
     // Update the HTML output
     htmlString = "<h2>" + (result === "tie" ? "It's a tie!" : "You " + result + "!") + "</h2>";
@@ -139,8 +124,7 @@
     var computerChoice = makeChoice();
 
     // End the game
-    var result = getResult(userChoice, computerChoice);
-    results.innerHTML = getHTML(result);
+    results.innerHTML = getResult(userChoice, computerChoice);
 
     // Announce the result to screen readers
     screenReader.textContent = results.textContent.replace("!", "! ");

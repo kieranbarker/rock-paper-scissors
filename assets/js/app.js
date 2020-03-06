@@ -81,7 +81,7 @@
    */
   var getResult = function (userChoice, computerChoice) {
 
-    // To store the result and HTML output
+    // Store the result and HTML output
     var result, htmlString;
 
     // Update the result

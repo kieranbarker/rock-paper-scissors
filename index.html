@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="The classic hand game, implemented with vanilla JS.">
+    <title>Rock Paper Scissors</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <style>*{box-sizing:border-box}body{width:88%;max-width:34em;margin:1em auto;text-align:center;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"}h1,h2{line-height:1.25}p{line-height:1.5}button{font-size:100%}[data-choice=rock]::after{content:" ✊"}[data-choice=paper]::after{content:" ✋"}[data-choice=scissors]::after{content:" ✌️"}.screen-reader{border:0;clip:rect(0 0 0 0);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;white-space:nowrap;width:1px}</style>
+  </head>
+  <body>
+    <h1>Rock Paper Scissors</h1>
+
+    <div id="app">
+      <button type="button" data-choice="rock">Rock</button>
+      <button type="button" data-choice="paper">Paper</button>
+      <button type="button" data-choice="scissors">Scissors</button>
+    </div>
+
+    <div id="results"></div>
+    <div class="screen-reader" aria-live="polite"></div>
+
+    <script>!function(){"use strict";var e=document.querySelector("#app"),t=document.querySelector("#results"),r=document.querySelector(".screen-reader"),o=["rock","paper","scissors"],n={rock:"scissors",paper:"rock",scissors:"paper"},c=function(){return function(e){for(var t,r,o=e.length;0!==o;)r=Math.floor(Math.random()*o),t=e[o-=1],e[o]=e[r],e[r]=t;return e}(o.slice())[0]},i=function(e){e=e.toLowerCase().split(" ");for(var t=0;t<e.length;t++)e[t]=e[t].charAt(0).toUpperCase()+e[t].slice(1);return e.join(" ")};e.addEventListener("click",function(e){if(e.target.hasAttribute("data-choice")){var o=e.target.getAttribute("data-choice"),a=c();t.innerHTML=function(e,t){var r,o;return o="<h2>"+("tie"===(r=e===t?"tie":n[e]===t?"win":"lose")?"It's a tie!":"You "+r+"!")+"</h2>",o+="<p>",o+="tie"===r?"You both picked "+e:"win"===r?i(e)+" beats "+t:i(t)+" beats "+e,o+="</p>"}(o,a),r.textContent=t.textContent.replace("!","! ")}},!1)}();</script>
+  </body>
+</html>

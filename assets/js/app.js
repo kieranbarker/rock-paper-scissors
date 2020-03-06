@@ -61,15 +61,15 @@
    * @param  {String} str The string to convert to title case
    * @return {String}     The converted string
    */
-  var toTitleCase = function (str) {
+  var toTitleCase = function (string) {
 
-    str = str.toLowerCase().split(" ");
+    string = string.toLowerCase().split(" ");
 
-    for (var i = 0; i < str.length; i++) {
-      str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1);
+    for (var i = 0; i < string.length; i++) {
+      string[i] = string[i].charAt(0).toUpperCase() + string[i].slice(1);
     }
 
-    return str.join(' ');
+    return string.join(" ");
 
   };
 
